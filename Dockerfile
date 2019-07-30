@@ -35,9 +35,9 @@ RUN apt-get -qqy update && apt-get install -qqy \
     gcloud --version && \
     docker --version && kubectl version --client
 
-RUN sudo add-apt-repository ppa:longsleep/golang-backports && \
-    sudo apt-get update && \
-    sudo apt-get install golang-go
+RUN add-apt-repository ppa:longsleep/golang-backports && \
+    apt-get update && \
+    apt-get install golang-go
 
 RUN go get github.com/tazjin/kontemplate/...
 
