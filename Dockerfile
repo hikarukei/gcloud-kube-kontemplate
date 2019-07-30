@@ -35,7 +35,8 @@ RUN apt-get -qqy update && apt-get install -qqy \
     gcloud --version && \
     docker --version && kubectl version --client
 
-RUN add-apt-repository ppa:longsleep/golang-backports && \
+RUN apt-get install software-properties-common && \
+    add-apt-repository ppa:longsleep/golang-backports && \
     apt-get update && \
     apt-get install golang-go
 
