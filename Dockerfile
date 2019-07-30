@@ -5,7 +5,7 @@ ARG CLOUD_SDK_VERSION=255.0.0
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
 ENV PATH "$PATH:/opt/google-cloud-sdk/bin/"
 COPY --from=static-docker-source /usr/local/bin/docker /usr/local/bin/docker
-RUN apt-get -qqy update && apt-get install -qqy \
+RUN apt-get -qqy update && apt-get install software-properties-common --qqy && apt-get install -qqy \
         curl \
         gcc \
         python-dev \
@@ -35,8 +35,7 @@ RUN apt-get -qqy update && apt-get install -qqy \
     gcloud --version && \
     docker --version && kubectl version --client
 
-RUN apt-get install software-properties-common && \
-    add-apt-repository ppa:longsleep/golang-backports && \
+RUN add-apt-repository ppa:longsleep/golang-backports && \
     apt-get update && \
     apt-get install golang-go
 
