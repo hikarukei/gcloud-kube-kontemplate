@@ -1,5 +1,3 @@
-FROM docker:17.12.0-ce as static-docker-source
-
 FROM debian:stretch
 ARG CLOUD_SDK_VERSION=255.0.0
 ENV CLOUD_SDK_VERSION=$CLOUD_SDK_VERSION
@@ -35,12 +33,7 @@ RUN apt-get -qqy update && apt-get install -qqy \
     gcloud --version && \
     docker --version && kubectl version --client
 
-RUN apt-get upgrade -qqy && \
-    curl -O https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz && \
-    tar -C /usr/local -xzf go1.12.7.linux-amd64.tar.gz && \
-    export PATH=$PATH:/usr/local/go/bin && \
-    chmod +x $HOME/.profile && \
-    ./$HOME/.profile && \
+RUN apt-get install golang-go -qqy && \
     go version
 
 RUN go get github.com/tazjin/kontemplate/...
